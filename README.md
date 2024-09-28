@@ -6,8 +6,7 @@ ___
 
 <div id="links" align="left" style="display: flex;">
   <a href="https://t.me/alonemooo">
-    <img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" width="100"/>
-    dsdasdsad  
+    <img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="sdasdadw" width="100"/>
 </a>
 </div>
 
