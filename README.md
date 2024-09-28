@@ -10,17 +10,20 @@ ___
 </a>
 </div>
 
+
 <div id="links" align="left">
   <a href="https://t.me/zkvttn">
     <img src="https://img.shields.io/badge/Татьяна-blue?logo=telegram&logoColor=white" alt="Татьяна" width="75"/>
 </a>
 </div>
 
+
 <div id="links" align="left">
   <a href="https://t.me/dariandrr">
     <img src="https://img.shields.io/badge/Дарья-blue?logo=telegram&logoColor=white" alt="Дарья" width="75"/>
 </a>
 </div>
+
 
 <div id="links" align="left">
   <a href="https://t.me/alonemooo">
