@@ -5,6 +5,7 @@ def index(request):
     '''Коннект к бд'''
     ''' Тут что то меняем в данных '''
     ''' бд -> данные парсим в dict '''
+    '''test1'''
     data = {'словарь1': 123}
     return render(request, 'todo_list/index.html',
                   {'data': data, }
