@@ -9,9 +9,10 @@
 
 {% block content %}
 <h1>Авторизация</h1>
-<form action="/auth/" method="post">
+<form action="/login/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+<div class="errors" style="color: red">{{error}}</div>
 {% endblock %}
