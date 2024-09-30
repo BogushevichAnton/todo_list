@@ -9,8 +9,19 @@
 
 
 {% block content %}
+
 <h1>Список дел</h1>
-<a href="{{ links.auth }}">
+{% if user.is_authenticated %}
+
+<h1>Пользователь успешно авторизован!</h1>
+
+<a href="{{ links.logout }}">
+<button>
+    Logout
+</button>
+</a>
+{% else %}
+<a href="{{ links.login }}">
 <button>
     Log in
 </button>
@@ -21,6 +32,15 @@
     Register
 </button>
 </a>
+{% endif %}
+
+
+
+
+
+
+
+
 
  <!--- <div class="container">
         <h1>Список дел</h1>

@@ -7,8 +7,9 @@ from django.shortcuts import render
 def index(request):
     '''Коннект к бд'''
     links = {
-        'auth': '../auth',
-        'register': '../register',
+        'login': 'login/',
+        'register': 'register/',
+        'logout': 'logout/'
     }
     return render(request, 'todo_list/index.html',
                   {'links': links, }
