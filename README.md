@@ -2,7 +2,11 @@
 ___
 The TODO LIST project on Django using the API is a web application that allows users to manage their tasks.
 ___
-# Developers (Juniors):
+#Developers (Juniors): 
+
+<div id="header" align="center">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGVocXo0MzI3aHgyMnFoeHlocHE0cTlsdXdtdjFjbG5waDBkMWl0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ua7vVw9awZKWwLSYpW/giphy.gif" width="100"/>
+</div>
 
 <div id="links" align="left">
   <a href="https://t.me/FORREST_GOD">
