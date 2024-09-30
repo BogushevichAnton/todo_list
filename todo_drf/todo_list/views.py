@@ -6,8 +6,10 @@ from django.shortcuts import render
 
 def index(request):
     '''Коннект к бд'''
-
-    data = {'словарь1': 123}
+    links = {
+        'auth': '../auth',
+        'register': '../register',
+    }
     return render(request, 'todo_list/index.html',
-                  {'data': data, }
+                  {'links': links, }
                   )
