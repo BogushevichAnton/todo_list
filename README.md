@@ -55,6 +55,11 @@ ___
 3. pip install -r req.txt
  ```
 
+### Create new user (full admin)
+```Python
+python manage.py createsuperuser
+ ```
+
 
 
 
