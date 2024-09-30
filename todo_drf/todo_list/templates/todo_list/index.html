@@ -9,9 +9,20 @@
 
 
 {% block content %}
-log_page - index.html
+<h1>Список дел</h1>
+<a href="{{ links.auth }}">
+<button>
+    Log in
+</button>
+    </a>
 
- <div class="container">
+<a href="{{ links.register }}">
+<button>
+    Register
+</button>
+</a>
+
+ <!--- <div class="container">
         <h1>Список дел</h1>
         <div class="input-container">
             <input type="text" id="taskInput" placeholder="Введите задачу...">
@@ -23,5 +34,5 @@ log_page - index.html
 
 
         <script src="{% static 'todo_list/js/script.js' %}"></script>
-
+--->
 {% endblock %}
