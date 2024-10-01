@@ -9,5 +9,13 @@
 
 {% block content %}
 <h1>Регистрация</h1>
-
+<form method="post">
+    {% csrf_token %}
+    <div class="form-error" style="color: red"> {{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p><label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label> {{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
 {% endblock %}

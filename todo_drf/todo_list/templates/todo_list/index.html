@@ -20,6 +20,13 @@
     Logout
 </button>
 </a>
+
+<a href="{{ links.topics }}">
+<button>
+    Topics
+</button>
+</a>
+
 {% else %}
 <a href="{{ links.login }}">
 <button>
@@ -32,27 +39,8 @@
     Register
 </button>
 </a>
+
+
 {% endif %}
 
-
-
-
-
-
-
-
-
- <!--- <div class="container">
-        <h1>Список дел</h1>
-        <div class="input-container">
-            <input type="text" id="taskInput" placeholder="Введите задачу...">
-            <button id="addTaskBtn">Добавить</button>
-        </div>
-        <div id="taskList" class="task-list"></div>
-    </div>
-
-
-
-        <script src="{% static 'todo_list/js/script.js' %}"></script>
---->
 {% endblock %}

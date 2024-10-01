@@ -9,10 +9,13 @@
 
 {% block content %}
 <h1>Авторизация</h1>
-<form action="/login/" method="post">
+<form method="post">
     {% csrf_token %}
-    {{ form }}
+    <div class="form-error" style="color: red"> {{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p><label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label> {{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
     <input type="submit" value="Submit">
 </form>
-<div class="errors" style="color: red">{{error}}</div>
 {% endblock %}

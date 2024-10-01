@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Высота на весь экран */
+}
+
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    height: calc(100% - 60px); /* Учитываем высоту заголовка */
+}
+
+.sidebar {
+    width: 250px;
+    background: #E6E6FA; /* Нежный фиолетовый цвет */
+    padding: 15px;
+    transition: width 0.3s ease, opacity 0.3s ease; /* Плавный переход для ширины и прозрачности */
+    height: 100%; /* Высота на весь экран */
+    overflow: hidden; /* Скрываем содержимое при сворачивании */
+}
+
+.sidebar.collapsed {
+    width: 60px; /* Ширина свернутого меню */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    transition: opacity 0.3s ease; /* Плавное исчезновение заголовка */
+}
+
+.sidebar.collapsed h2 {
+    opacity: 0; /* Скрываем заголовок при сворачивании */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block; /* Сделаем ссылки блочными для удобства */
+}
+
+.sidebar.collapsed ul li a {
+    text-indent: -9999px; /* Скрываем текст ссылок */
+}
+
+.sidebar ul li a:hover {
+    background-color: #ddd; /* Добавим эффект наведения */
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f7f7f7; /* Светло-серый фон для основного контента */
+    border-radius: 10px; /* Округление углов основного блока */
+    margin-left: 20px; /* Отступ от бокового меню */
+}
+
+.task-folder {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.task-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    width: calc(30% - 40px);
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #f4f4f4;
+}
+
+.toggle-button {
+    position: relative;
+    top: 20px; /* Отодвигаем кнопку вниз */
+    left: -20px; /* Отодвигаем кнопку влево */
+    z-index: 1; /* Чтобы кнопка была выше остальных элементов */
+
+    width: 40px; /* Ширина кнопки */
+    height: 40px; /* Высота кнопки */
+
+    background-color: transparent; /* Прозрачный фон */
+    border: none; /* Убираем границы */
+
+    font-size: 24px; /* Размер шрифта для стрелки */
+
+    cursor: pointer; /* Курсор при наведении */
+}
+
+.toggle-button:hover {
+    background-color: rgba(200, 200, 200, 0.3); /* Легкий эффект наведения */
+}
