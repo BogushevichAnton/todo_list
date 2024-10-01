@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Менеджер задач</h1>
+        <div class="user-info">
+            <span>Привет, <strong id="username">{{ user.name }}</strong></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h2>Меню</h2>
+            <ul id="task-list">
+                <li><a href="#task1">Задача 1</a></li>
+                <li><a href="#task2">Задача 2</a></li>
+                <li><a href="#task3">Задача 3</a></li>
+            </ul>
+        </aside>
+
+        <button id="toggle-menu" class="toggle-button">▶️</button>
+
+        <main>
+            <section id="tasks">
+                <h2>Задачи</h2>
+                <div class="task-folder">
+                    <div class="task-card" id="task1">
+                        <h3>Задача 1</h3>
+                        <p>Описание задачи 1...</p>
+                        <button>Перейти</button>
+                    </div>
+                    <div class="task-card" id="task2">
+                        <h3>Задача 2</h3>
+                        <p>Описание задачи 2...</p>
+                        <button>Перейти</button>
+                    </div>
+                    <div class="task-card" id="task3">
+                        <h3>Задача 3</h3>
+                        <p>Описание задачи 3...</p>
+                        <button>Перейти</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'todo_list/js/topics.js' %}"></script>
+
+
+    <footer>
+        <p>&copy; 2024 Менеджер задач.</p>
+    </footer>
+
+
+{% endblock %}

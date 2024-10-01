@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from authuser.views import register, Auth, logout_view
+from authuser.views import Register, Auth, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,9 @@ urlpatterns = [
     path('', include('todo_list.urls')),
     path("login/", Auth.as_view(), name='login'),
     path("logout/", logout_view, name='logout'),
-    path("register/", register, name="register"),
+    path("register/", Register.as_view(), name="register"),
+
+
+
     path('api/', include('api.urls'))
 ]
