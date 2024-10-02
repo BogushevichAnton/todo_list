@@ -1,114 +1,118 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Высота на весь экран */
+    font-family: 'Poppins', sans-serif;
 }
 
-header {
-    background: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+h1 {
+    font-weight: 800;
 }
 
-.container {
-    display: flex;
-    height: calc(100% - 60px); /* Учитываем высоту заголовка */
+li {
+    list-style: none;
 }
 
-.sidebar {
-    width: 250px;
-    background: #E6E6FA; /* Нежный фиолетовый цвет */
-    padding: 15px;
-    transition: width 0.3s ease, opacity 0.3s ease; /* Плавный переход для ширины и прозрачности */
-    height: 100%; /* Высота на весь экран */
-    overflow: hidden; /* Скрываем содержимое при сворачивании */
-}
-
-.sidebar.collapsed {
-    width: 60px; /* Ширина свернутого меню */
-}
-
-.sidebar h2 {
-    margin-top: 0;
-    transition: opacity 0.3s ease; /* Плавное исчезновение заголовка */
-}
-
-.sidebar.collapsed h2 {
-    opacity: 0; /* Скрываем заголовок при сворачивании */
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 10px 0;
-}
-
-.sidebar ul li a {
+a {
     text-decoration: none;
-    color: #333;
-    padding: 10px;
-    display: block; /* Сделаем ссылки блочными для удобства */
 }
 
-.sidebar.collapsed ul li a {
-    text-indent: -9999px; /* Скрываем текст ссылок */
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #f9f9f9;
 }
 
-.sidebar ul li a:hover {
-    background-color: #ddd; /* Добавим эффект наведения */
-}
-
-main {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f7f7f7; /* Светло-серый фон для основного контента */
-    border-radius: 10px; /* Округление углов основного блока */
-    margin-left: 20px; /* Отступ от бокового меню */
-}
-
-.task-folder {
+#sidebar {
+    max-width: 264px;
+    min-width: 264px;
+    transition: all 0.35s ease-in-out;
+    background-color: white ;
+    color: red;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.task-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 15px;
-    width: calc(30% - 40px);
+#sidebar.collapsed {
+    margin-left: -264px;
 }
 
-footer {
+.toggler-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+.toggler-btn i {
+    font-size: 1.75rem;
+    color: gray;
+    font-weight: 1000;
+}
+
+.navbar {
+    padding: 1.15rem 1.5rem;
+
+}
+
+.sidebar-nav {
+    flex: 1 1 auto;
+}
+
+.sidebar-logo {
+    padding: 1.15rem 1.5rem;
     text-align: center;
-    padding: 10px;
-    background: #f4f4f4;
 }
 
-.toggle-button {
+.sidebar-logo a {
+    color: black;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.sidebar-header {
+    color: black;
+    font-size: .75rem;
+    padding: 1.5rem 1.5rem .375rem;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: black;
     position: relative;
-    top: 20px; /* Отодвигаем кнопку вниз */
-    left: -20px; /* Отодвигаем кнопку влево */
-    z-index: 1; /* Чтобы кнопка была выше остальных элементов */
-
-    width: 40px; /* Ширина кнопки */
-    height: 40px; /* Высота кнопки */
-
-    background-color: transparent; /* Прозрачный фон */
-    border: none; /* Убираем границы */
-
-    font-size: 24px; /* Размер шрифта для стрелки */
-
-    cursor: pointer; /* Курсор при наведении */
+    transition: all 0.35s;
+    display: block;
+    font-size: 1.25rem;
 }
 
-.toggle-button:hover {
-    background-color: rgba(200, 200, 200, 0.3); /* Легкий эффект наведения */
+a.sidebar-link:hover {
+    background-color: #f9f6f630;
+}
+
+.sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+.sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+/* Screen size less than 768px */
+
+@media (max-width:768px) {
+
+    .sidebar-toggle {
+        margin-left: -264px;
+    }
+
+    #sidebar.collapsed {
+        margin-left: 0;
+    }
 }
