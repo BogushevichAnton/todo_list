@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!-- Sidebar -->
+<aside id="sidebar" class="sidebar-toggle">
+    <!-- Sidebar Navigation -->
+    <ul class="sidebar-nav p-0">
+        <li class="sidebar-header">
+            Tools & Components
+        </li>
+        <li class="sidebar-item">
+            {% if user.is_authenticated %}
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-user"></i>
+                <span>{{ user.name }}</span>
+            </a>
+            {% else %}
+            <a href="{{ links.login }}" class="sidebar-link">
+                <i class="lni lni-user"></i>
+                <span>LogIN</span>
+            </a>
 
-</body>
-</html>
+            <a href="{{ links.register }}" class="sidebar-link">
+                <i class="lni lni-user"></i>
+                <span>Register</span>
+            </a>
+            {% endif %}
+
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-agenda"></i>
+                <span>Task</span>
+            </a>
+        </li>
+        <li class="sidebar-header">
+            Pages
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+               data-bs-target="#auth" aria-expanded="true" aria-controls="auth">
+                <i class="lni lni-protection"></i>
+                <span>Auth</span>
+            </a>
+            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Login</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Register</a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-popup"></i>
+                <span>Notification</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-cog"></i>
+                <span>Setting</span>
+            </a>
+        </li>
+    </ul>
+    <!-- Sidebar Navigation Ends -->
+
+    <div class="sidebar-footer">
+        {% if user.is_authenticated %}
+        <a href="{{ links.logout }}" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Выйти</span>
+        </a>
+        {% else %}
+
+        {% endif %}
+
+    </div>
+</aside>

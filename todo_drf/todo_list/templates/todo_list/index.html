@@ -2,45 +2,43 @@
 {% load static %}
 
 {% block css_additional %}
-    <link rel="stylesheet" href="{% static 'todo_list/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
+<link rel="stylesheet" href="{% static 'todo_list/bootstrap/css/bootstrap.min.css' %}">
+<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
 {% endblock %}
 
-{% block title %} TODO CHECKER {% endblock %}
-
-
 {% block content %}
+<div class="d-flex">
+    {% include 'todo_list/bars/sidebar.html' %}
+    <!-- Main Component -->
+    <div class="main">
+        {% include 'todo_list/bars/navbar.html' %}
 
-<h1>Список дел</h1>
-{% if user.is_authenticated %}
+        <main class="p-1">
+            <div class="container-fluid">
+                <div class="mb-3 text-center">
+                    <div class="container">
+    <h1 class="display-4 font-weight-bold">Добро пожаловать в мир вашего идеального TODO-листа!</h1>
+    <p class="lead text-start">Вы когда-нибудь задумывались, насколько важно организовать свои задачи и приоритеты? В нашем стремительном мире, полном бесконечных дел и обязательств, создание четкого и удобного списка дел может стать вашим верным спутником на пути к успеху.</p>
 
-<h1>Пользователь успешно авторизован!</h1>
+    <p class="text-start">Представьте себе: каждое утро вы просыпаетесь с ясной головой и четким пониманием того, что вам нужно сделать. Это не просто мечта — это реальность, которую мы предлагаем вам создать вместе!</p>
 
-<a href="{{ links.logout }}">
-<button>
-    Logout
-</button>
-</a>
+    <p class="text-start">С нашим TODO-листом вы получите не только функциональный инструмент для планирования, но и настоящего помощника, который поможет вам раскрыть ваш потенциал. Вы сможете легко добавлять задачи, устанавливать приоритеты и отслеживать свой прогресс. Забудьте о хаосе и беспорядке! Ваши идеи и планы теперь будут собраны в одном месте, готовые к реализации.</p>
 
-<a href="{{ links.topics }}">
-<button>
-    Topics
-</button>
-</a>
+    <p class="text-start">Каждый выполненный пункт в вашем списке — это шаг к достижению ваших целей. Вы будете чувствовать, как с каждым завершенным делом растет ваша уверенность и мотивация. Это не просто о том, чтобы отмечать галочки; это о том, чтобы видеть, как ваши мечты становятся реальностью. С каждым выполненным пунктом вы приближаетесь к своим амбициям и начинаете осознавать, что все возможно, если подойти к этому с правильным настроем.</p>
 
-{% else %}
-<a href="{{ links.login }}">
-<button>
-    Log in
-</button>
-    </a>
+    <p class="text-start">Не упустите возможность стать мастером своей жизни! Присоединяйтесь к нам и позвольте вашему TODO-листу стать вашим надежным компаньоном в этом захватывающем путешествии. Организуйте свои мысли, освободите место для креативности и начните действовать уже сегодня!</p>
 
-<a href="{{ links.register }}">
-<button>
-    Register
-</button>
-</a>
+    <p class="text-start">Помните, каждый великий успех начинается с простого шага. Сделайте его с нашим TODO-листом, и пусть каждый ваш день будет наполнен смыслом и достижениями. Ваша жизнь — это ваше произведение искусства, и наш TODO-лист поможет вам создать шедевр из ваших идей и стремлений!</p>
+</div>
+                </div>
+            </div>
+        </main>
+    </div>
 
+    <script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-{% endif %}
+    <script src="{% static 'todo_list/js/sidebar.js' %}"></script>
 
+</div>
 {% endblock %}
