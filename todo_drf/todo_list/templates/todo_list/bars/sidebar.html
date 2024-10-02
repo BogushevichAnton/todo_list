@@ -12,12 +12,12 @@
                 <span>{{ user.name }}</span>
             </a>
             {% else %}
-            <a href="{{ links.login }}" class="sidebar-link">
+            <a href="{% url 'login' %}" class="sidebar-link">
                 <i class="lni lni-user"></i>
                 <span>LogIN</span>
             </a>
 
-            <a href="{{ links.register }}" class="sidebar-link">
+            <a href="{% url 'register' %}" class="sidebar-link">
                 <i class="lni lni-user"></i>
                 <span>Register</span>
             </a>
@@ -65,7 +65,7 @@
 
     <div class="sidebar-footer">
         {% if user.is_authenticated %}
-        <a href="{{ links.logout }}" class="sidebar-link">
+        <a href="{% url 'logout' %}" class="sidebar-link">
             <i class="lni lni-exit"></i>
             <span>Выйти</span>
         </a>
