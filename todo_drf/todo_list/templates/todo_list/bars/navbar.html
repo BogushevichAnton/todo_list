@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+<nav class="navbar navbar-expand">
+    <button class="toggler-btn" type="button">
+        <i class="lni lni-text-align-left"></i>
+    </button>
+    <p >
+        <a href="{% url 'index' %}" style="color: black; text-decoration: none;">
+            <div style="margin-left: 1%;">
+                <img src="{% static 'todo_list/img/logo1_output.png' %}" alt="TODO-LIST" height="50">
+                TODO-LIST
+            </div>
+        </a>
+    </p>
+    <!--- <div style="position: absolute; right: 0;">
 
-</body>
-</html>
+    </div> --->
+</nav>

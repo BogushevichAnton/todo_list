@@ -12,10 +12,10 @@ from todo_list.models import Note
 def index(request):
     '''Коннект к бд'''
     links = {
-        'login': 'login/',
-        'register': 'register/',
-        'logout': 'logout/',
-        'topics': 'topics/',
+        'login': '/login/',
+        'register': '/register/',
+        'logout': '/logout/',
+        'topics': '/topics/',
     }
     return render(request, 'todo_list/index.html',
                   {'links': links, }
@@ -27,6 +27,12 @@ class Topics(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['links'] = {
+        'login': '/login/',
+        'register': '/register/',
+        'logout': '/logout/',
+        'topics': '/topics/',
+    }
         return context
 
     def get_queryset(self):
