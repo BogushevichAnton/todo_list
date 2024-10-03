@@ -12,7 +12,6 @@
 {% block content %}
 
 
-
 <div class="container w-25 mt-5">
     <div class="row justify-content-center">
         <form class="" method="post">
@@ -21,7 +20,7 @@
             <div class="form-check mb-3">
                 <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>
                 {{ f }}
-
+                <div class="error">{{f.errors}}</div>
             </div>
             {% endfor %}
             {% for error in form.non_field_errors %}

@@ -27,6 +27,7 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault('is_superuser', True)
         return self._create_user(email, password, **extra_fields)
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(blank=False, unique=True, max_length=255)
     name = models.CharField(max_length=25, blank=False, null=False)
