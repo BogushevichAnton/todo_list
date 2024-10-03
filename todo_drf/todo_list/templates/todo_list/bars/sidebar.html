@@ -1,9 +1,15 @@
 <!-- Sidebar -->
+<style>
+    a {
+      text-decoration: none;
+    }
+</style>
+
 <aside id="sidebar" class="sidebar-toggle">
     <!-- Sidebar Navigation -->
     <ul class="sidebar-nav p-0">
         <li class="sidebar-header">
-            Tools & Components
+            Пользователь
         </li>
         <li class="sidebar-item">
             {% if user.is_authenticated %}
@@ -14,52 +20,47 @@
             {% else %}
             <a href="{% url 'login' %}" class="sidebar-link">
                 <i class="lni lni-user"></i>
-                <span>LogIN</span>
+                <span>Войти</span>
             </a>
 
             <a href="{% url 'register' %}" class="sidebar-link">
                 <i class="lni lni-user"></i>
-                <span>Register</span>
+                <span>Регистрация</span>
             </a>
             {% endif %}
-
         </li>
+
+        {% if user.is_authenticated %}
         <li class="sidebar-item">
             <a href="#" class="sidebar-link">
                 <i class="lni lni-agenda"></i>
-                <span>Task</span>
+                <span>Создать категорию</span>
             </a>
         </li>
+
         <li class="sidebar-header">
-            Pages
+            Категории
         </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-               data-bs-target="#auth" aria-expanded="true" aria-controls="auth">
+
+        <li class="sidebar-item small">
+            <a href="" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+               data-bs-target="#auth" aria-expanded="true" aria-controls="auth" style="height: 40px;">
                 <i class="lni lni-protection"></i>
-                <span>Auth</span>
+                <span>Работа</span>
             </a>
-            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Login</a>
+            <ul id="auth" class="sidebar-dropdown collapse small " data-bs-parent="#sidebar">
+                <li class="sidebar-item small" style="height: 35px;">
+                    <a href="#" class="sidebar-link"><p class="fs-6">Заметка по работе №1</p></a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Register</a>
+                <li class="sidebar-item small" style="">
+                    <a href="#" class="sidebar-link">
+                        <p class="fs-6">Заметка по работе №2
+                        </p>
+                    </a>
                 </li>
             </ul>
         </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-popup"></i>
-                <span>Notification</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-cog"></i>
-                <span>Setting</span>
-            </a>
-        </li>
+        {% endif %}
     </ul>
     <!-- Sidebar Navigation Ends -->
 
