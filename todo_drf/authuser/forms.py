@@ -50,11 +50,10 @@ class RegisterForm(UserCreationForm):
                'placeholder': "Введите пароль",
                }
     ))
-    password2 = forms.CharField(label='Пароль', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(
         attrs={'type': "password",
                'class': "form-control",
-               'placeholder': "Введите пароль",
-
+               'placeholder': "Повторите пароль",
                }
     ))
 

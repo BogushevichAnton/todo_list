@@ -1,8 +1,12 @@
 <!-- Sidebar -->
+{% load static %}
 <style>
     a {
       text-decoration: none;
     }
+    .sidebar-dropdown .sidebar-item {
+       line-height: 0.5;
+   }
 </style>
 
 <aside id="sidebar" class="sidebar-toggle">
@@ -31,35 +35,40 @@
         </li>
 
         {% if user.is_authenticated %}
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+        <li class="sidebar-item" style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="{% url 'categories' %}" class="sidebar-link">
                 <i class="lni lni-agenda"></i>
-                <span>Создать категорию</span>
+                <span>Категории</span>
+            </a>
+            <a href="{% url 'add_categories' %}">
+                <img class="icon" src="{% static 'todo_list/img/icon-addlink.svg' %}" alt="dots icon">
             </a>
         </li>
-
+        {% if categories_list %}
         <li class="sidebar-header">
             Категории
         </li>
+        {% endif %}
 
+        {% for i in categories_list %}
         <li class="sidebar-item small">
-            <a href="" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-               data-bs-target="#auth" aria-expanded="true" aria-controls="auth" style="height: 40px;">
+            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+               data-bs-target="#{{ i.name|urlencode }}" aria-expanded="false" aria-controls="{{ i.name|urlencode }}"
+               style="margin-top: 1px;">
                 <i class="lni lni-protection"></i>
-                <span>Работа</span>
+                <span>{{ i.name }}</span>
             </a>
-            <ul id="auth" class="sidebar-dropdown collapse small " data-bs-parent="#sidebar">
-                <li class="sidebar-item small" style="height: 35px;">
-                    <a href="#" class="sidebar-link"><p class="fs-6">Вывод наименований всех заметок</p></a>
+            <ul id="{{ i.name|urlencode }}" class="sidebar-dropdown collapse list-unstyled small" style="height: auto;">
+                {% for j in i.notes.all %}
+                <li class="sidebar-item small">
+                    <a href="#" class="sidebar-link"><p class="fs-6">{{ j.title }}</p></a>
                 </li>
-                <li class="sidebar-item small" style="margin-top: 15px;">
-                    <a href="#" class="sidebar-link">
-                        <p class="fs-6">Заметка по работе №2
-                        </p>
-                    </a>
-                </li>
+                {% endfor %}
+
             </ul>
         </li>
+        {% endfor %}
+
         {% endif %}
     </ul>
     <!-- Sidebar Navigation Ends -->

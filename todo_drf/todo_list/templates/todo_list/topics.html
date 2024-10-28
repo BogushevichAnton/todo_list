@@ -13,78 +13,52 @@
     <!-- Sidebar Ends -->
     <!-- Main Component -->
     <div class="main">
+
         {% include 'todo_list/bars/navbar.html' %}
 
+        {% if categories_list %}
         <main class="p-3">
+
             <div class="container-fluid">
-                <div class="mb-3 text-center">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'add_categories' %}" class="btn btn-success">Добавить категорию</a>
+                    </div>
+                </div>
+
+                <div class="mb-3 mt-2 text-center">
 
                     <div class="row row-cols-1 row-cols-md-4 g-4">
+
+                        {% for i in categories_list %}
                         <div class="col">
                             <div class="card" style="width: 18rem; height: 15rem;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Название категории</h5>
+                                    <h5 class="card-title">{{i.name}}</h5>
                                     <p class="card-text">Описание категории. Например: "Здесь заметки по работе"
                                         Вывести 1-2 заметки
                                     </p>
                                 </div>
-                                <div class="d-flex flex-column justify-content-bottom">
-                                    <a href="#" class="btn btn-primary sticky-top">Перейти куда-нибудь</a>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{% url 'delete_category' i.pk %}" class="btn btn-danger">Удалить категорию</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card" style="width: 18rem; height: 15rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Название категории</h5>
-                                    <p class="card-text">Описание категории. Например: "Здесь заметки по работе"</p>
-
-                                </div>
-                                <div class="d-flex flex-column justify-content-bottom">
-                                    <a href="#" class="btn btn-primary sticky-top">Перейти куда-нибудь</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 18rem; height: 15rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Название категории</h5>
-                                    <p class="card-text">Описание категории. Например: "Здесь заметки по работе"</p>
-
-                                </div>
-                                <div class="d-flex flex-column justify-content-bottom">
-                                    <a href="#" class="btn btn-primary sticky-top">Перейти куда-нибудь</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 18rem; height: 15rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Название категории</h5>
-                                    <p class="card-text">Описание категории. Например: "Здесь заметки по работе"</p>
-
-                                </div>
-                                <div class="d-flex flex-column justify-content-bottom">
-                                    <a href="#" class="btn btn-primary sticky-top">Перейти куда-нибудь</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card" style="width: 18rem; height: 15rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Название категории</h5>
-                                    <p class="card-text">Описание категории. Например: "Здесь заметки по работе"</p>
-
-                                </div>
-                                <div class="d-flex flex-column justify-content-bottom">
-                                    <a href="#" class="btn btn-primary sticky-top">Перейти куда-нибудь</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </main>
+        {% else %}
+        <p class="text-center">Пока что у вас нет ни одной категории. Для добавления категории необходимо нажать зеленый
+            крестик слева.</p>
+        {% endif %}
     </div>
 
     <script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

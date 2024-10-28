@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_additional %}
+<link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
+<link rel="stylesheet" href="{% static 'todo_list/bootstrap/css/bootstrap.min.css' %}">
+<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'todo_list/bars/sidebar.html' %}
+    <!-- Sidebar Ends -->
+    <!-- Main Component -->
+
+    <div class="main">
+        {% include 'todo_list/bars/navbar.html' %}
+        <main class="p-3">
+
+            <div class="container-fluid">
+                <h2>Подтверждение удаления</h2>
+                <p>Вы уверены, что хотите удалить категорию "{{ category.name }}"? </p>
+                {% if notes %}
+                <p>В категории "{{ category.name }}" есть заметки. При удалении категории заметки - пропадут. </p>
+                <p>Список заметок:</p>
+                <ol class="list-group list-group-numbered w-50 mb-2">
+                    {% for i in notes %}
+                    <li class="list-group-item">{{i}}</li>
+                    {% endfor %}
+                </ol>
+
+                {% else %}
+                <p>В категории "{{ category.name }}" нет заметок </p>
+                {% endif %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <a href="{% url 'categories' %}" class="btn btn-secondary">Отмена</a>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</div>
+{% endblock %}
