@@ -1,10 +1,11 @@
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView, DetailView
 
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect
-
+from unicodedata import category
+from django.core import serializers
 from todo_list.forms import NoteForm
 from todo_list.models import Note, Categories
 from django.db import IntegrityError
@@ -22,7 +23,6 @@ class Category(ListView):
     template_name = 'todo_list/topics.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
-
         context = super().get_context_data(**kwargs)
         return context
 
@@ -95,8 +95,8 @@ class NotesCreateView(CreateView):
         try:
             context['category'] = Categories.objects.get(pk=cat_id)
         except Categories.DoesNotExist:
-            #Здесь нужна обработка ошибок
-            pass
+            #Здесь нужна обработка ошибок пока отсылка на 404, необходима страница загрузки ошибки
+            raise Http404('hello')
         return context
 
     def form_valid(self, form):
@@ -104,4 +104,22 @@ class NotesCreateView(CreateView):
         note.category = Categories.objects.get(pk=self.kwargs.get('cat_id'))
         note.save()
         return redirect(reverse_lazy('categories'))
+
+
+class CategoryView(DetailView):
+    model = Categories
+    template_name = 'todo_list/category_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        notes = Note.objects.filter(category=self.kwargs['pk'])
+
+        context['notes'] = [{
+            'note': note,
+            'time_left': note.time_left
+        } for note in notes]
+        return context
+
+
+
 
