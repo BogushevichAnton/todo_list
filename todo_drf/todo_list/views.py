@@ -2,8 +2,10 @@ from django.views.generic import ListView, CreateView
 
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect
+
+from todo_list.forms import NoteForm
 from todo_list.models import Note, Categories
 from django.db import IntegrityError
 
@@ -82,5 +84,24 @@ def delete_category(request, cat_id):
     }
     return render(request, 'todo_list/category_delete.html', context)
 
+class NotesCreateView(CreateView):
+    model = Note
+    form_class = NoteForm
+    template_name = 'todo_list/note_create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cat_id = self.kwargs.get('cat_id')
+        try:
+            context['category'] = Categories.objects.get(pk=cat_id)
+        except Categories.DoesNotExist:
+            #Здесь нужна обработка ошибок
+            pass
+        return context
+
+    def form_valid(self, form):
+        note = form.save(commit=False)
+        note.category = Categories.objects.get(pk=self.kwargs.get('cat_id'))
+        note.save()
+        return redirect(reverse_lazy('categories'))
 

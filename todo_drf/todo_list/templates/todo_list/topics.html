@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
 <link rel="stylesheet" href="{% static 'todo_list/bootstrap/css/bootstrap.min.css' %}">
 <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 {% endblock %}
 
 {% block content %}
@@ -41,15 +43,26 @@
                                     </p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+                                    <div class="col-md-4">
+                                        <a href="{% url 'add_notes' i.pk %}" style="color: cornflowerblue;"><i
+                                                class="bi bi-database-add"></i></a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href="{% url 'delete_category' i.pk %}" class="btn btn-danger">Удалить категорию</a>
+
+                                    <div class="col-md-4">
+                                        <a href="#" style="color: green;">
+                                            <i class="bi-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <a href="{% url 'delete_category' i.pk %}" style="color: red;">
+                                            <i class="bi-trash"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         {% endfor %}
                     </div>
                 </div>
