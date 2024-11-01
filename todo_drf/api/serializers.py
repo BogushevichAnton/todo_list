@@ -1,7 +1,22 @@
-from rest_framework.serializers import ModelSerializer
-from todo_list.models import Note
+from rest_framework import serializers
 
-class NoteSerializer(ModelSerializer):
+from authuser.models import User
+from todo_list.models import Note, Categories
+
+
+class NoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Note
-        fields = ('title', )
+        fields = ('id', 'title', )
+
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'email', 'name']
+
+
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Categories
+        fields = ('id', 'name', )

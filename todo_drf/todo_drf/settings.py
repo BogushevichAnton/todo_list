@@ -19,12 +19,11 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 LOGIN_URL = reverse_lazy('login')
 
 LOGOUT_REDIRECT_URL = 'index'
 
-#LOGOUT_URL = '/logout/'
+# LOGOUT_URL = '/logout/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -36,7 +35,6 @@ SECRET_KEY = 'django-insecure-o0@t&53q1iuz-+2qer^l2o!k!*=(#^1+4#a_^&fhfvd-e0yg)4
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -50,7 +48,8 @@ INSTALLED_APPS = [
     'todo_list.apps.TodoListConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'authuser'
+    'authuser',
+    'django_extensions'
 ]
 
 AUTH_USER_MODEL = 'authuser.User'
@@ -64,6 +63,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
 
 ROOT_URLCONF = 'todo_drf.urls'
 
@@ -87,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todo_drf.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -98,7 +101,6 @@ DATABASES = {
         'TIME_ZONE': 'Europe/Moscow',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -118,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -129,7 +130,6 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
