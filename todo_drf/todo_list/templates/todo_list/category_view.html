@@ -20,13 +20,15 @@
 
             <div class="container-fluid">
                 <h2>Категория "{{ object.name }}"</h2>
+                <div class="col-md-6">
+                    <a href="{% url 'add_categories' %}" class="btn btn-success">Добавить заметку</a>
+                </div>
+
                 <p>Список заметок:</p>
-
-
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">№</th>
+                        <th scope="col" class="text-center">№</th>
                         <th scope="col">Наименование</th>
                         <th scope="col">Дата публикации</th>
                         <th scope="col">Дата дедлайна</th>
@@ -37,25 +39,31 @@
                     <tbody>
                     {% for i in notes %}
                     <tr>
-                        <th scope="row">{{forloop.counter}}</th>
-                        <td>{{i.note.title}}</td>
-                        <td>{{i.note.published_date}}</td>
-                        <td>{{i.note.deadline}}</td>
-                        <td>{{i.time_left}}</td>
-                        <td>
-
+                        <th scope="row"
+                            class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}  text-center">
+                            {{forloop.counter}}
+                        </th>
+                        <td class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
+                            {{i.note.title}}
+                        </td>
+                        <td class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
+                            {{i.note.published_date}}
+                        </td>
+                        <td class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
+                            {{i.note.deadline}}
+                        </td>
+                        <td class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
+                            {{i.time_left}}
+                        </td>
+                        <td class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <a href="" style="color: cornflowerblue;"><i
-                                            class="bi bi-database-add"></i></a>
-                                </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <a href="" style="color: green;">
                                         <i class="bi-eye"></i>
                                     </a>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <a href="" style="color: red;">
                                         <i class="bi-trash"></i>

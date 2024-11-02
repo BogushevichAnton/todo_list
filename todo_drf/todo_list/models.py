@@ -40,7 +40,7 @@ class Note(models.Model):
             time_left = self.deadline - timezone.now()
             if time_left.days < 0:
                 return "Просрочено"
-            return f"{time_left.days} дней"
+            return f"{time_left.days} дней {time_left.seconds // 60} минут"
         else:
             return "Нет дедлайна"
 

@@ -10,12 +10,19 @@ from todo_list.forms import NoteForm
 from todo_list.models import Note, Categories
 from django.db import IntegrityError
 
-''' Файл для Володи '''
+from django.db.models import F, Value
+from django.db.models.functions import Lower
 
+
+def get_user_categories(self :None):
+    return Categories.objects.filter(user=self.request.user).select_related('user').prefetch_related('notes')
 
 def index(request):
-    '''Коннект к бд'''
-    return render(request, 'todo_list/index.html', )
+    categories_list = Categories.objects.filter(user=request.user).select_related('user').prefetch_related('notes')
+    context = {
+        'categories_list': categories_list
+    }
+    return render(request, 'todo_list/index.html', context=context)
 
 
 class Category(ListView):
@@ -24,12 +31,8 @@ class Category(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['categories_list'] = get_user_categories(self)
         return context
-
-    def get_queryset(self):
-        return Categories.objects.filter(user=self.request.user).select_related('user').prefetch_related('notes')
-
-
 
 
 def check_status_category_name(self, name: str) -> bool:
@@ -65,6 +68,11 @@ class CategoryCreateView(CreateView):
     def get_success_url(self):
         return reverse('categories')
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories_list'] = get_user_categories(self)
+        return context
+
 
 
 def delete_category(request, cat_id):
@@ -77,11 +85,15 @@ def delete_category(request, cat_id):
         return redirect('categories')  # Перенаправление на список категорий
 
     # Отображение формы подтверждения удаления
+    categories_list = Categories.objects.filter(user=request.user).select_related('user').prefetch_related('notes')
     context = {
         'category': category,
         'notes': notes,
+        'categories_list': categories_list
 
     }
+
+
     return render(request, 'todo_list/category_delete.html', context)
 
 class NotesCreateView(CreateView):
@@ -95,8 +107,10 @@ class NotesCreateView(CreateView):
         try:
             context['category'] = Categories.objects.get(pk=cat_id)
         except Categories.DoesNotExist:
-            #Здесь нужна обработка ошибок пока отсылка на 404, необходима страница загрузки ошибки
+                #Здесь нужна обработка ошибок пока отсылка на 404, необходима страница загрузки ошибки
             raise Http404('hello')
+
+        context['categories_list'] = get_user_categories(self)
         return context
 
     def form_valid(self, form):
@@ -112,12 +126,24 @@ class CategoryView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        notes = Note.objects.filter(category=self.kwargs['pk'])
-
+        notes = Note.objects.filter(category=self.kwargs['pk']).annotate(
+              color_order=Lower(F('color'))
+            ).order_by(
+              '-color_order',
+              'published_date'
+            )
         context['notes'] = [{
             'note': note,
-            'time_left': note.time_left
+            'time_left': note.time_left,
         } for note in notes]
+        context['colors'] = {
+            'red': 'table-danger',
+            'green': 'table-success',
+            'orange': 'table-warning',
+        }
+        context['categories_list'] = get_user_categories(self)
+
+
         return context
 
 

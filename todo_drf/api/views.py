@@ -23,10 +23,12 @@ class NotesViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all().order_by('id')
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
+
 
     def get_queryset(self):
         """
