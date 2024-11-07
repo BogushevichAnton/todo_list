@@ -25,7 +25,10 @@ class NoteForm(forms.ModelForm):
             'class': 'form-select',
         })
 
-        self.fields['description'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Описание заметки'
-        })
+        self.fields['description'].widget = forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Описание заметки',
+                'rows': 4  # Установите количество строк для textarea
+            }
+        )

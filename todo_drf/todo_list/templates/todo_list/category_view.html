@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <h2>Категория "{{ object.name }}"</h2>
                 <div class="col-md-6">
-                    <a href="{% url 'add_categories' %}" class="btn btn-success">Добавить заметку</a>
+                    <a href="{% url 'add_notes' object.pk %}" class="btn btn-success">Добавить заметку</a>
                 </div>
 
                 <p>Список заметок:</p>
@@ -52,16 +52,26 @@
                         <td class="">
                             <div class="row">
 
-                                <div class="col-md-6 text-center">
+                                <div class="col-md-4 text-center">
                                     <a href="" style="color: green;">
-                                        <img src="{% static 'todo_list/assets/eye.svg' %}" alt="Bootstrap"
+                                        <img src="{% static 'todo_list/assets/eye.svg' %}" alt="check"
                                              width="15" height="15">
                                     </a>
                                 </div>
-                                <div class="col-md-6 text-center">
+
+
+                                <div class="col-md-4 text-center">
+                                    <a href="" style="color: yellow;">
+                                        <img src="{% static 'todo_list/assets/pencil.svg' %}" alt="edit"
+                                             width="15" height="15">
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-4 text-center">
 
                                     <a href="" style="color: red;">
-                                        <img src="{% static 'todo_list/assets/trash.svg' %}" alt="Bootstrap"
+                                        <img src="{% static 'todo_list/assets/trash.svg' %}" alt="delete"
                                              width="15" height="15">
                                     </a>
                                 </div>

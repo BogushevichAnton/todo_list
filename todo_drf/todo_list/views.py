@@ -119,7 +119,8 @@ class NotesCreateView(CreateView):
         note = form.save(commit=False)
         note.category = Categories.objects.get(pk=self.kwargs.get('cat_id'))
         note.save()
-        return redirect(reverse_lazy('categories'))
+
+        return redirect(reverse_lazy('view_category', kwargs={'pk':self.kwargs.get('cat_id')}))
 
 
 class CategoryView(DetailView):
