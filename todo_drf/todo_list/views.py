@@ -18,11 +18,13 @@ def get_user_categories(self :None):
     return Categories.objects.filter(user=self.request.user).select_related('user').prefetch_related('notes')
 
 def index(request):
-    categories_list = Categories.objects.filter(user=request.user).select_related('user').prefetch_related('notes')
-    context = {
-        'categories_list': categories_list
-    }
-    return render(request, 'todo_list/index.html', context=context)
+    if request.user.is_authenticated == True:
+        categories_list = Categories.objects.filter(user=request.user).select_related('user').prefetch_related('notes')
+        context = {
+            'categories_list': categories_list
+        }
+        return render(request, 'todo_list/index.html', context=context)
+    return render(request, 'todo_list/index.html')
 
 
 class Category(ListView):

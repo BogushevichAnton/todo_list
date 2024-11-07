@@ -18,17 +18,20 @@
         <li class="sidebar-item">
             {% if user.is_authenticated %}
             <a href="#" class="sidebar-link">
-                <i class="lni lni-user"></i>
+                <img src="{% static 'todo_list/assets/person.svg' %}" alt="user"
+                     width="25" height="25">
                 <span>{{ user.name }}</span>
             </a>
             {% else %}
             <a href="{% url 'login' %}" class="sidebar-link">
-                <i class="lni lni-user"></i>
+                <img src="{% static 'todo_list/assets/door-open.svg' %}" alt="LogIN"
+                     width="25" height="25">
                 <span>Войти</span>
             </a>
 
             <a href="{% url 'register' %}" class="sidebar-link">
-                <i class="lni lni-user"></i>
+                <img src="{% static 'todo_list/assets/person-add.svg' %}" alt="Register"
+                     width="25" height="25">
                 <span>Регистрация</span>
             </a>
             {% endif %}
@@ -37,7 +40,8 @@
         {% if user.is_authenticated %}
         <li class="sidebar-item" style="display: flex; align-items: center; justify-content: space-between;">
             <a href="{% url 'categories' %}" class="sidebar-link">
-                <i class="lni lni-agenda"></i>
+                <img src="{% static 'todo_list/assets/tags.svg' %}" alt="categories"
+                     width="25" height="25">
                 <span>Категории</span>
             </a>
             <a href="{% url 'add_categories' %}">
@@ -55,7 +59,8 @@
             <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
                data-bs-target="#{{ i.name|urlencode }}" aria-expanded="false" aria-controls="{{ i.name|urlencode }}"
                style="margin-top: 1px;">
-                <i class="lni lni-protection"></i>
+                <img src="{% static 'todo_list/assets/tag.svg' %}" alt="categories"
+                     width="25" height="25">
                 <span>{{ i.name }}</span>
             </a>
             <ul id="{{ i.name|urlencode }}" class="sidebar-dropdown collapse list-unstyled small" style="height: auto;">

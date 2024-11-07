@@ -17,7 +17,7 @@ class Auth(LoginView):
     template_name = 'authuser/login.html'
 
     def get_success_url(self):
-         return reverse_lazy('topics')
+         return reverse_lazy('index')
 
     # def get(self, request):
     #     form = self.form_class()

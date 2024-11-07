@@ -18,6 +18,7 @@ class Categories(models.Model):
 class Note(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='notes')
     title = models.CharField(max_length=255, verbose_name='наименование заметки')
+    description = models.CharField(max_length=255, verbose_name='Ваше описание')
     color = models.CharField(max_length=25, verbose_name='цвет заметки')
 
     # Дата публикации
@@ -40,7 +41,17 @@ class Note(models.Model):
             time_left = self.deadline - timezone.now()
             if time_left.days < 0:
                 return "Просрочено"
-            return f"{time_left.days} дней {time_left.seconds // 60} минут"
+
+            result = f''
+            if time_left.days > 0:
+                result += f"{time_left.days} дней "
+            hours = time_left.seconds // 3600
+            if hours > 0:
+                result += f'{hours} часов '
+            minutes = (time_left.seconds % 3600) // 60
+            if minutes > 0:
+                result += f'{minutes} минут'
+            return result
         else:
             return "Нет дедлайна"
 
