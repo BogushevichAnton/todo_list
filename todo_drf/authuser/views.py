@@ -52,7 +52,7 @@ class Register(CreateView):
     template_name = "authuser/register.html"
 
     def get_success_url(self):
-        return reverse_lazy('topics')
+        return reverse_lazy('index')
 
     def form_valid(self, form):
         user = form.save()

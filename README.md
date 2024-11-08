@@ -60,6 +60,9 @@ ___
 python manage.py createsuperuser
  ```
 
+### Production
+nginx + gunicorn + postgresql
+
 
 
 

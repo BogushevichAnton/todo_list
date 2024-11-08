@@ -97,9 +97,12 @@ WSGI_APPLICATION = 'todo_drf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'TIME_ZONE': 'Europe/Moscow',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'todo_list',
+        'USER': 'postgres',
+        'PASSWORD': 'nemooo',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

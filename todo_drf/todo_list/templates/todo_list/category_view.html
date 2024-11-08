@@ -22,7 +22,71 @@
                     <a href="{% url 'add_notes' object.pk %}" class="btn btn-success">Добавить заметку</a>
                 </div>
 
-                <p>Список заметок:</p>
+                <p>Заметки:</p>
+                <div class="mb-3 mt-2 text-center">
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        {% for i in notes %}
+                        <div class="col">
+                            <div class="card"
+                                 style="width: 18rem; height: 20rem; background-color: {% if i.note.color == 'red' %}#d65858;{% elif i.note.color == 'green' %}#59c098;{% elif i.note.color == 'orange' %}orange;{% endif %}">
+                                <h5 class="card-title">{{i.note.title}}</h5>
+                                <textarea class="form-control textarea" rows="10"
+                                          style="border: 1px solid #ccc; width: 100%; box-sizing: border-box;">{{i.note.description}}</textarea>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-sm">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th style="font-size: 12px;">Дата создания:</th>
+                                                <td style="font-size: 12px;">{{i.note.published_date}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="font-size: 12px;">Дедлайн:</th>
+                                                <td style="font-size: 12px;">{{i.time_left}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="font-size: 12px;">Действия:</th>
+                                                <td style="font-size: 12px;">
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 text-center">
+                                                            <a href="" style="color: yellow;">
+                                                                <img src="{% static 'todo_list/assets/pencil.svg' %}"
+                                                                     alt="edit"
+                                                                     width="15" height="15">
+                                                            </a>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 text-center">
+                                                            <a href="" style="color: red;">
+                                                                <img src="{% static 'todo_list/assets/trash.svg' %}"
+                                                                     alt="delete"
+                                                                     width="15" height="15">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -86,4 +150,5 @@
     </div>
 </div>
 <script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'todo_list/js/sidebar.js' %}"></script>
 {% endblock %}
