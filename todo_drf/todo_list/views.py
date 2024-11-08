@@ -145,8 +145,6 @@ class CategoryView(DetailView):
             'orange': 'table-warning',
         }
         context['categories_list'] = get_user_categories(self)
-
-
         return context
 
 

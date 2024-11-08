@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block css_additional %}
 <link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
 <link rel="stylesheet" href="{% static 'todo_list/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 {% endblock %}
 
 {% block content %}
@@ -63,8 +66,6 @@
                                                                      width="15" height="15">
                                                             </a>
                                                         </div>
-
-
                                                         <div class="col-md-6 text-center">
                                                             <a href="" style="color: red;">
                                                                 <img src="{% static 'todo_list/assets/trash.svg' %}"
@@ -79,76 +80,106 @@
                                         </table>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         {% endfor %}
-                    </div>
-                </div>
-
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="text-center">№</th>
-                        <th scope="col" class="text-center">Наименование</th>
-                        <th scope="col" class="text-center">Описание</th>
-                        <th scope="col" class="text-center">Оставшееся время дедлайна</th>
-                        <th scope="col" class="text-center">Действия</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for i in notes %}
-                    <tr class="{% if i.note.color == 'red' %}table-danger{% elif i.note.color == 'green' %}table-success{% elif i.note.color == 'orange' %}table-warning{% endif %}">
-                        <th scope="row"
-                            class="text-center">
-                            {{forloop.counter}}
-                        </th>
-                        <td class="">
-                            {{i.note.title}}
-                        </td>
-                        <td class="">
-                            {{i.note.description}}
-                        </td>
-                        <td class="">
-                            {{i.time_left}}
-                        </td>
-                        <td class="">
-                            <div class="row">
-
-                                <div class="col-md-4 text-center">
-                                    <a href="" style="color: green;">
-                                        <img src="{% static 'todo_list/assets/eye.svg' %}" alt="check"
-                                             width="15" height="15">
-                                    </a>
-                                </div>
-
-
-                                <div class="col-md-4 text-center">
-                                    <a href="" style="color: yellow;">
-                                        <img src="{% static 'todo_list/assets/pencil.svg' %}" alt="edit"
-                                             width="15" height="15">
-                                    </a>
-                                </div>
-
-
-                                <div class="col-md-4 text-center">
-
-                                    <a href="" style="color: red;">
-                                        <img src="{% static 'todo_list/assets/trash.svg' %}" alt="delete"
-                                             width="15" height="15">
-                                    </a>
+                        <div class="col" id="adder">
+                            <div class="card" style="width: 18rem; height: 20rem; opacity: 0.7;">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                                    <button type="button" class="btn btn-success add" id="add-form">+</button>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </div>
+                        <div class="form-container" style="display: none;">
+                            <form method="POST" id="note-form" action="{% url 'add_notes' object.pk %}">
+                                <input type="hidden" id="cat-id" name="cat-id" value="{{ object.pk }}">
+                                {% csrf_token %}
+                                <div class="col">
+                                    <div class="card"
+                                         style="width: 18rem; height: 20rem; background-color: {% if i.note.color == 'red' %}#d65858;{% elif i.note.color == 'green' %}#59c098;{% elif i.note.color == 'orange' %}orange;{% endif %}">
+                                        <h5 class="card-title"><input type="text" name="title" maxlength="255"
+                                                                      class="form-control"
+                                                                      placeholder="Наименование заметки" required=""
+                                                                      aria-invalid="true" id="id_title">
+                                        </h5>
+                                        <textarea name="description" class="form-control" rows="10"
+                                                  style="border: 1px solid #ccc; width: 100%; box-sizing: border-box;"
+                                                  placeholder="Описание заметки" required=""
+                                                  id="id_description"></textarea>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <th style="font-size: 12px;">Дедлайн:</th>
+                                                        <td style="font-size: 12px;">
+
+                                                            <input type="text" name="deadline"
+                                                                   class="form-control datepicker input-sm"
+                                                                   id="datetimepicker" placeholder="Дедлайн">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="font-size: 12px;">Цвет заметки:</th>
+                                                        <td style="font-size: 12px;">
+                                                            <select name="color"
+                                                                    class="form-select"
+                                                                    id="id_color">
+                                                                <option value="red">Красный</option>
+                                                                <option value="orange">Оранжевый</option>
+                                                                <option value="green" selected="">Зеленый</option>
+
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="font-size: 12px;">Действия:</th>
+                                                        <td style="font-size: 12px;">
+                                                            <div class="row">
+                                                                <div class="col-md-12 text-center">
+                                                                    <button type="submit" class="btn"
+                                                                            id="save-note">
+                                                                        <img src="{% static 'todo_list/assets/database-add.svg' %}"
+                                                                             alt="save"
+                                                                             width="15" height="15">
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 </div>
+
+{% endblock %}
+{% block js_additional %}
+<script src="{% static 'todo_list/js/jquery.js' %}"></script>
 <script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'todo_list/js/sidebar.js' %}"></script>
+<script src="{% static 'todo_list/js/datepicker.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<!---<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> --->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/ru.js"></script>
+
+<script src="{% static 'todo_list/js/note_add.js' %}"></script>
 {% endblock %}
+
