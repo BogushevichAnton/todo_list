@@ -32,54 +32,46 @@
                         <div class="col">
                             <div class="card"
                                  style="width: 18rem; height: 20rem; background-color: {% if i.note.color == 'red' %}#d65858;{% elif i.note.color == 'green' %}#59c098;{% elif i.note.color == 'orange' %}orange;{% endif %}">
-                                <h5 class="card-title">{{i.note.title}}</h5>
+                                <h5 class="card-title">
+                                    {{i.note.title}}
+                                </h5>
                                 <textarea class="form-control textarea" rows="10"
                                           style="border: 1px solid #ccc; width: 100%; box-sizing: border-box;">{{i.note.description}}</textarea>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <table class="table table-sm">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th style="font-size: 12px;">Дата создания:</th>
-                                                <td style="font-size: 12px;">{{i.note.published_date}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 12px;">Дедлайн:</th>
-                                                <td style="font-size: 12px;">{{i.time_left}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th style="font-size: 12px;">Действия:</th>
-                                                <td style="font-size: 12px;">
+                                <table class="table table-sm">
+                                    <tbody>
+                                    <tr>
+                                        <th style="font-size: 12px;">Дата создания:</th>
+                                        <td style="font-size: 12px;">{{i.note.published_date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 12px;">Дедлайн:</th>
+                                        <td style="font-size: 12px;">{{i.time_left}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 12px;">Действия:</th>
+                                        <td style="font-size: 12px;">
 
 
-                                                    <div class="row">
-                                                        <div class="col-md-6 text-center">
-                                                            <a href="" style="color: yellow;">
-                                                                <img src="{% static 'todo_list/assets/pencil.svg' %}"
-                                                                     alt="edit"
-                                                                     width="15" height="15">
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-md-6 text-center">
-                                                            <a href="" style="color: red;">
-                                                                <img src="{% static 'todo_list/assets/trash.svg' %}"
-                                                                     alt="delete"
-                                                                     width="15" height="15">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                            <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                    <a href="" style="color: yellow;">
+                                                        <img src="{% static 'todo_list/assets/pencil.svg' %}"
+                                                             alt="edit"
+                                                             width="15" height="15">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    <a href="" style="color: red;">
+                                                        <img src="{% static 'todo_list/assets/trash.svg' %}"
+                                                             alt="delete"
+                                                             width="15" height="15">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         {% endfor %}
@@ -96,11 +88,12 @@
                                 {% csrf_token %}
                                 <div class="col">
                                     <div class="card"
-                                         style="width: 18rem; height: 20rem; background-color: {% if i.note.color == 'red' %}#d65858;{% elif i.note.color == 'green' %}#59c098;{% elif i.note.color == 'orange' %}orange;{% endif %}">
-                                        <h5 class="card-title"><input type="text" name="title" maxlength="255"
-                                                                      class="form-control"
-                                                                      placeholder="Наименование заметки" required=""
-                                                                      aria-invalid="true" id="id_title">
+                                         style="width: 18rem; height: 20rem;">
+                                        <h5 class="card-title">
+                                            <input type="text" name="title" maxlength="255"
+                                                   class="form-control"
+                                                   placeholder="Наименование заметки" required=""
+                                                   aria-invalid="true" id="id_title">
                                         </h5>
                                         <textarea name="description" class="form-control" rows="10"
                                                   style="border: 1px solid #ccc; width: 100%; box-sizing: border-box;"
@@ -121,7 +114,7 @@
                                                         <td style="font-size: 12px;">
 
                                                             <input type="text" name="deadline"
-                                                                   class="form-control datepicker input-sm"
+                                                                   class="form-control datepicker form-control-sm"
                                                                    id="datetimepicker" placeholder="Дедлайн">
                                                         </td>
                                                     </tr>
@@ -129,7 +122,7 @@
                                                         <th style="font-size: 12px;">Цвет заметки:</th>
                                                         <td style="font-size: 12px;">
                                                             <select name="color"
-                                                                    class="form-select"
+                                                                    class="form-select form-select-sm"
                                                                     id="id_color">
                                                                 <option value="red">Красный</option>
                                                                 <option value="orange">Оранжевый</option>
@@ -144,7 +137,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-12 text-center">
                                                                     <button type="submit" class="btn"
-                                                                            id="save-note">
+                                                                            id="save-note" style="padding: 0;">
                                                                         <img src="{% static 'todo_list/assets/database-add.svg' %}"
                                                                              alt="save"
                                                                              width="15" height="15">
