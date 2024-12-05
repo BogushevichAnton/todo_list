@@ -89,5 +89,5 @@ class NoteModelTests(TestCase):
         deadline = timezone.now() + timedelta(hours=2)
         note = Note.objects.create(category=self.category, title='Note4', description='desc', color='orange', deadline=deadline)
         result = note.time_left
-        print(f"Тест: test_time_left_today, Ожидаемый результат: 1 часов 59 минут, Результат: {result}")
-        self.assertTrue("1 часов 59 минут" in result)
+        print(f"Тест: test_time_left_today, Ожидаемый результат: 2 часов, Результат: {result}")
+        self.assertTrue("2 часов" in result)

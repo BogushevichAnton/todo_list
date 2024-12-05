@@ -16,8 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from authuser.views import Register, Auth, logout_view
+from authuser.views import Register, Auth, logout_view, profile, ChangeUsernameView, PasswordChangeView
+from debug_toolbar.toolbar import debug_toolbar_urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +32,10 @@ urlpatterns = [
 
 
 
-    path('api/v1/', include('api.urls'))
-]
+    path('api/v1/', include('api.urls')),
+    path('profile/', login_required(profile), name='profile'),
+    path('profile/update_name/',  login_required(ChangeUsernameView.as_view()), name='profile_update_name'),
+    path('profile/password/', login_required(PasswordChangeView.as_view()), name='password_update'),
+
+
+] + debug_toolbar_urls()

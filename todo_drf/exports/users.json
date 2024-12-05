@@ -1,0 +1,50 @@
+[
+    {
+        "id": 3,
+        "email": "kek@mail.ru",
+        "name": "Kirill",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    },
+    {
+        "id": 4,
+        "email": "max@t.com",
+        "name": "\u041c\u0430\u043a\u0441\u0438\u043c",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    },
+    {
+        "id": 5,
+        "email": "test123@mail.ru",
+        "name": "Anton",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    },
+    {
+        "id": 2,
+        "email": "test3@mail.ru",
+        "name": "Anton",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    },
+    {
+        "id": 1,
+        "email": "test@mail.ru",
+        "name": "Name",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    },
+    {
+        "id": 6,
+        "email": "gen@mail.ru",
+        "name": "Gen",
+        "is_staff": false,
+        "is_superuser": false,
+        "is_active": true
+    }
+]

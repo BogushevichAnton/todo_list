@@ -54,14 +54,16 @@
 
                                             <div class="row">
                                                 <div class="col-md-6 text-center">
-                                                    <a href="" style="color: yellow;">
+                                                    <a href="{% url 'update_note' object.pk i.note.pk %}"
+                                                       style="color: yellow;">
                                                         <img src="{% static 'todo_list/assets/pencil.svg' %}"
                                                              alt="edit"
                                                              width="15" height="15">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-6 text-center">
-                                                    <a href="" style="color: red;">
+                                                    <a href="{% url 'del_note' object.pk i.note.pk %}"
+                                                       style="color: red;">
                                                         <img src="{% static 'todo_list/assets/trash.svg' %}"
                                                              alt="delete"
                                                              width="15" height="15">
@@ -159,6 +161,33 @@
                 </div>
             </div>
         </main>
+        <div class="row">
+            <div class="col-md-auto mx-auto">
+                {% if is_paginated %}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if page_obj.number != 1 %}
+                        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                        {% endif %}
+                        {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                        {% endif %}
+                        <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+                        {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                        {% endif %}
+                        {% if page_obj.number != last_page %}
+                        <li class="page-item"><a class="page-link" href="?page={{ last_page }}">{{ last_page }}</a></li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 

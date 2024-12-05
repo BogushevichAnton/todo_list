@@ -18,17 +18,22 @@ from .serializers import NoteSerializer, CategorySerializer
 
 
 class NotesViewSet(viewsets.ModelViewSet):
-    queryset = Note.objects.all().order_by('id')
     serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticated]
+    basename = 'notes'
 
+    def get_queryset(self):
+        """
+        Возвращает список заметок для текущего пользователя.
+        """
+        user = self.request.user
+        return Note.objects.select_related('category').filter(category__user=user)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Categories.objects.all().order_by('id')
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
-
+    basename = 'categories'
 
     def get_queryset(self):
         """

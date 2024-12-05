@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css_additional %}
+<link rel="stylesheet" href="{% static 'todo_list/css/topics.css' %}">
+<link rel="stylesheet" href="{% static 'todo_list/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %}
+
+{% block title %} Профиль {% endblock %}
+
+
+{% block content %}
+<div class="d-flex">
+    {% include 'todo_list/bars/sidebar.html' %}
+    <!-- Sidebar Ends -->
+    <!-- Main Component -->
+
+    <div class="main">
+        {% include 'todo_list/bars/navbar.html' %}
+        <main class="p-3">
+            <h1>Профиль</h1>
+            <p>Имя: {{ user.name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <a href="{% url 'profile_update_name' %}">Изменить имя пользователя</a>
+            <br>
+            <a href="{% url 'password_update' %}">Сменить пароль</a>
+
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_additional %}
+<script src="{% static 'todo_list/js/jquery.js' %}"></script>
+<script src="{% static 'todo_list/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'todo_list/js/sidebar.js' %}"></script>
+<script src="{% static 'todo_list/js/datepicker.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<!---<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> --->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/ru.js"></script>
+
+<script src="{% static 'todo_list/js/note_add.js' %}"></script>
+{% endblock %}

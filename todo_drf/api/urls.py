@@ -5,9 +5,8 @@ from rest_framework import routers
 
 
 router = routers.DefaultRouter()
-router.register(r'notes', NotesViewSet)
-router.register(r'categories', CategoryViewSet)
-#router.register(r'user', UserViewSet)
+router.register(r'notes', NotesViewSet, basename = 'notes')
+router.register(r'categories', CategoryViewSet, basename = 'categories')
 
 urlpatterns = [
     # ex: /polls/

@@ -36,6 +36,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = ["127.0.0.1", ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +51,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'authuser',
-    'django_extensions'
+    'django_extensions',
+    'debug_toolbar',
 ]
 
 AUTH_USER_MODEL = 'authuser.User'
@@ -62,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 REST_FRAMEWORK = {
