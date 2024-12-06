@@ -84,7 +84,6 @@ class NotesCreateView(CreateView):
         try:
             context['category'] = Categories.objects.get(pk=cat_id)
         except Categories.DoesNotExist:
-                #Здесь нужна обработка ошибок пока отсылка на 404, необходима страница загрузки ошибки
             raise Http404('Такая страница не существует')
 
         context['categories_list'] = get_user_categories(self)
@@ -120,7 +119,6 @@ class CategoryView(DetailView):
         except EmptyPage:
             page_obj = paginator.get_page(paginator.num_pages)
 
-        # Применяем аннотацию только к страницам, которые мы отображаем. Это ключевое изменение для оптимизации.
         annotated_page_obj = page_obj.object_list.annotate(color_order=Lower(F('color')))
 
         context['notes'] = [{

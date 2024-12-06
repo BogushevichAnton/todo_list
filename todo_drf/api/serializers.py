@@ -9,12 +9,6 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
         model = Note
         fields = ('id', 'title', )
 
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['id', 'email', 'name']
-
-
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

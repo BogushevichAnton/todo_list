@@ -15,6 +15,7 @@ class Categories(models.Model):
     def __str__(self):
         return self.name
 
+
 class Note(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='notes')
     title = models.CharField(max_length=255, verbose_name='наименование заметки')
