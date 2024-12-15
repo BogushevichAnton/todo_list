@@ -1,3 +1,4 @@
+cd todo_list
 cd todo_drf
 docker-compose up -d db
 docker compose build
