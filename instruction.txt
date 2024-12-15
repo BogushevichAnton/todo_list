@@ -8,3 +8,8 @@ docker compose up
 (он как я понял связан с django, а нам нужен хост docker (localhost))
 
 Исправить 0.0.0.0:8000 -> localhost:8000
+
+ERROR: exec /usr/src/app/django.sh: no such file or directory
+открыть файл django.sh внизу спарва поменять CRLF -> LF
+github меняет это, почему - не понятно
+
