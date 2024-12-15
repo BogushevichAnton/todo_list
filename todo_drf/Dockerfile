@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends bash && pip ins
 
 COPY . .
 RUN chmod +x /usr/src/app/django.sh
-ENTRYPOINT ["/bin/bash", "/usr/src/app/django.sh"]
+ENTRYPOINT ["/usr/src/app/django.sh"]
