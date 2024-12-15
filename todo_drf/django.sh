@@ -1,16 +1,3 @@
-#!/bin/sh
-echo "Creating Migrations users..."
-python manage.py makemigrations authuser
-echo "==================================="
-
-echo "Creating Migrations todo_list..."
-python manage.py makemigrations todo_list
-echo "==================================="
-
-echo "Starting Migrations..."
-python manage.py migrate
-echo "==================================="
-
-echo "Starting Server..."
-python manage.py runserver 0.0.0.0:8000
-echo "update host http://localhost:8000/"
+version https://git-lfs.github.com/spec/v1
+oid sha256:7e812fd0ad6e7e7342f491da08e87e4ed77c3f96b9fcd1ac784f18d470d80bf6
+size 463
