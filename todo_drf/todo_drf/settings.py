@@ -19,6 +19,11 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 LOGIN_URL = reverse_lazy('login')
 
 LOGOUT_REDIRECT_URL = 'index'
@@ -29,12 +34,12 @@ LOGOUT_REDIRECT_URL = 'index'
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o0@t&53q1iuz-+2qer^l2o!k!*=(#^1+4#a_^&fhfvd-e0yg)4'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG', '1')) == "1"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = ["127.0.0.1", ]
 
@@ -103,11 +108,11 @@ WSGI_APPLICATION = 'todo_drf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todo_list',
-        'USER': 'postgres',
-        'PASSWORD': 'nemooo',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ.get('PG_NAME', 'postgres'),
+        'USER': os.environ.get('PG_USER', 'postgres'),
+        'PASSWORD': os.environ.get('PG_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('PG_HOST', 'db'),
+        'PORT': os.environ.get('PG_PORT', 5432),
     }
 }
 

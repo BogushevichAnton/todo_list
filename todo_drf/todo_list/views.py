@@ -44,7 +44,6 @@ def check_status_category_name(self, name: str) -> bool:
     return True
 
 
-
 class CategoryCreateView(CreateView):
     model = Categories
     fields = ['name']

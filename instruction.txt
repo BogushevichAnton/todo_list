@@ -1,3 +1,10 @@
-python -m venv venv
-venv\Scripts\activate
-pip install -r req.txt
+cd todo_drf
+docker-compose up -d db
+docker compose build
+docker compose up
+
+
+не смотрите на хост, который выводится в консоли
+(он как я понял связан с django, а нам нужен хост docker (localhost))
+
+Исправить 0.0.0.0:8000 -> localhost:8000
