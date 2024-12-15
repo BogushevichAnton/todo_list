@@ -50,18 +50,17 @@ ___
 # Start project
 
 ```Python
-1. python -m venv venv
-2. venv\Scripts\activate
-3. pip install -r req.txt
+1. cd todo_list/todo_drf
+2. docker-compose up -d db
+3. docker compose build
+4. docker compose up
+0.0.0.0:8000 -> localhost:8000
  ```
 
-### Create new user (full admin)
-```Python
-python manage.py createsuperuser
- ```
+# ERROR
+exec /usr/src/app/django.sh: no such file or directory
 
-### Production
-nginx + gunicorn + postgresql
+открыть файл django.sh внизу спарва поменять CRLF -> LF
 
 
 
