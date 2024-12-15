@@ -10,5 +10,7 @@ COPY req.txt /todo_drf/
 RUN pip install -r req.txt
 
 COPY . /todo_drf/
+COPY django.sh .
+RUN chmod +x ./django.sh
 
-ENTRYPOINT ["/todo_drf/django.sh"]
+ENTRYPOINT ["/bin/sh", "./django.sh"]
