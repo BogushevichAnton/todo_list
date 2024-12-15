@@ -3,10 +3,11 @@ FROM python:3.12.6
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /todo_drf
+WORKDIR /usr/src/app
 
-COPY req.txt /todo_drf/
-RUN pip install -r req.txt
-COPY . /todo_drf/
+COPY req.txt ./
+RUN apt-get update && apt-get install -y --no-install-recommends bash && pip install --no-cache-dir -r req.txt
 
-ENTRYPOINT ["/todo_drf/django.sh"]
+COPY . .
+RUN chmod +x /usr/src/app/django.sh
+ENTRYPOINT ["/bin/bash", "/usr/src/app/django.sh"]

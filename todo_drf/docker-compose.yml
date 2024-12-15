@@ -12,7 +12,7 @@ services:
     container_name: todo_list_app
     build: .
     volumes:
-      - .:/todo_drf
+      - .:/usr/src/app
     ports:
       - "8000:8000"
     environment:
