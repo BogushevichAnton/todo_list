@@ -1,5 +1,4 @@
-cd todo_list
-cd todo_drf
+cd todo_list/todo_drf
 docker-compose up -d db
 docker compose build
 docker compose up
