@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Creating Migrations users..."
 python manage.py makemigrations authuser
 echo ====================================
