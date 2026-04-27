@@ -13,3 +13,7 @@ ERROR: exec /usr/src/app/django.sh: no such file or directory
 открыть файл django.sh внизу спарва поменять CRLF -> LF
 github меняет это, почему - не понятно
 
+
+подключение к контейнеру:
+docker exec -it ИМЯ_КОНТЕЙНЕРА psql -U postgres -d postgres
+
